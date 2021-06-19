@@ -1,0 +1,20 @@
+#!/bin/sh
+while :
+do
+IP='8.8.8.8'
+fping -c1 -t2000 $IP 2>/dev/null 1>/dev/null
+sleep 2
+fping -c1 -t2000 $IP 2>/dev/null 1>/dev/null
+sleep 2
+fping -c1 -t2000 $IP 2>/dev/null 1>/dev/null
+if [ "$?" = 0 ]
+then
+echo "Host $IP MASIH KONEK"
+else
+        ifdown wan
+        sleep 2
+        ifup wan
+echo "Host $IP DOWN RECONNECT"
+fi
+sleep 120
+done
