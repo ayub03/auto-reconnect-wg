@@ -11,9 +11,13 @@ if [ "$?" = 0 ]
 then
 echo "Host $IP MASIH KONEK"
 else
-        ifdown wan
+        ifdown mm
+        ifdown mm_4
+        ifdown qmi
         sleep 2
-        ifup wan
+        ifup mm
+        ifup mm_4
+        ifup qmi
 echo "Host $IP DOWN RECONNECT"
 fi
 sleep 120
